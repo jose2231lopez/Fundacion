@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+*{
+    color: #ffffff;
+    font-family:Poppins;
+    font-size: 15px;
+    
+}
+body{
+    background-image: url("/static/imagen/fondo2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+    
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    position: relative;
+    top: 15px;
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 290px;
+    margin: 0 auto
+    
+}
+.container{
+    
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px 0 12px;
+    border-radius: 20px;
+    border: #0ed22e;
+    
+    
+}
+span{
+    color: #fff;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+    
+    
+}
+header{
+    color: #fff;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+
+.input-field .input{
+    height: 45px;
+    width: 87%;
+    border: none;
+    border-radius: 30px;
+    color: #fff;;
+    font-size: 18px;
+    padding: 0 0 0 45px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+}
+i{
+    position: relative;
+    top: -33px;
+    left: 17px;
+    color: #0ed22e;
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.submit{
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    height: 45px;
+    outline: none;
+    width: 103%;
+    color: black;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: .3s ;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgb(252, 255, 254);
+    
+  
+}
+.two-col{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    font-size: small;
+    margin-top: 20px;
+}
+.one{
+    display: flex;
+}
+label a{
+    
+    color: #fff;
+}
+.input-field {
+    position: relative; 
+
+
+}
+
+
+.input-field .bx-show,
+.input-field .bx-hide {
+    position: absolute;
+    top: 23%;
+    left: 230px; /* Alineamos a la Izquierda */
+    transform: translateX(-30%);
+    cursor: pointer;
+}
+.two-R{
+    text-align: center ;
+    font-size: 15px;
+    margin: 15px;
+}
+.Policy {
+    text-align: center ;
+    font-size: 15px;
+    margin: 30px;
+   
+}
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #fff;
+}

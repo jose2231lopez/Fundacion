@@ -1,0 +1,172 @@
+<nav class="navbar top-navbar navbar-expand-md navbar-dark">
+    <div class="navbar-header" data-logobg="skin5">
+      <a class="navbar-brand" href="">
+        <b class="logo-icon ps-2">
+          <img
+            src="/static/assets/images/Fundacion.png"
+            alt="homepage"
+            class="light-logo"
+            width="115"
+          />
+        </b>
+        <span class="logo-text ms-2">
+        </span>
+      </a>
+      <a
+        class="nav-toggler waves-effect waves-light d-block d-md-none"
+        href="javascript:void(0)"
+        ><i class="ti-menu ti-close"></i
+      ></a>
+    </div>
+    <div
+      class="navbar-collapse collapse"
+      id="navbarSupportedContent"
+      data-navbarbg="skin5"
+    >
+      <ul class="navbar-nav float-start me-auto">
+        <li class="nav-item d-none d-lg-block">
+          <a
+            class="nav-link sidebartoggler waves-effect waves-light"
+            href="javascript:void(0)"
+            data-sidebartype="mini-sidebar"
+            ><i class="mdi mdi-menu font-24"></i
+          ></a>
+        </li>
+
+        <li class="nav-item search-box">
+          <a
+            class="nav-link waves-effect waves-dark"
+            href="javascript:void(0)"
+            ><i class="mdi mdi-magnify fs-4"></i
+          ></a>
+          <form class="app-search position-absolute">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search &amp; enter"
+            />
+            <a class="srh-btn"><i class="mdi mdi-window-close"></i></a>
+          </form>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav float-end">
+
+        
+        <li class="nav-item dropdown">
+           <a
+          class="
+            nav-link
+            dropdown-toggle
+            text-muted
+            waves-effect waves-dark
+            pro-pic
+          "
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+        {% if request.user.is_authenticated %}
+              <i>Bienvenido:</i>
+                    {{ request.user.username }}
+              {% else %}
+              <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="{% url 'login' %}">Inicie sesión para continuar.</a>
+            {% endif %}
+        </a>
+          <ul class="dropdown-menu dropdown-menu-end user-dd animated"
+          aria-labelledby="navbarDropdown"
+          >
+            <a class="dropdown-item" href="{% url 'index1' %}"
+              ><i class="mdi mdi-wallet me-1 ms-1"></i> Visitar pagina web</a
+            >
+            <div class="dropdown-divider"></div>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">
+                  <i class="fa fa-power-off me-1 ms-1"></i> Cerrar Sesión
+                </button>
+              </form>
+            <div class="dropdown-divider"></div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- Barra de Navegacion Lateral Izquierda -->
+<aside class="left-sidebar" data-sidebarbg="skin5">
+  <div class="scroll-sidebar">
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav" class="pt-5">
+        <li class="sidebar-item">
+        </li>
+        <li class="sidebar-item">
+       <li class="sidebar-item">
+          <a
+            class="sidebar-link waves-effect waves-dark sidebar-link"
+            href="/admin/"
+            aria-expanded="false"
+            ><i class="mdi mdi-view-dashboard"></i
+            ><span class="hide-menu">Panel Administracion</span></a
+          >
+        </li> 
+        </li>
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="javascript:void(0)"
+            aria-expanded="false"
+            ><i class="mdi mdi-receipt"></i
+            ><span class="hide-menu">PRINCIPAL </span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">   
+              <a href="{% url 'general' %}" class="sidebar-link" 
+                ><i class="mdi mdi-note-outline"></i
+                ><span class="hide-menu"> General </span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="javascript:void(0)"
+            aria-expanded="false"
+            ><i class="mdi mdi-bulletin-board"></i
+            ><span class="hide-menu">OTROS </span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item"> 
+              <a href="{% url 'Otros' %}" class="sidebar-link" 
+                ><i class="mdi mdi-chart-bubble"></i
+                ><span class="hide-menu"> Otros </span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="javascript:void(0)"
+            aria-expanded="false"
+            ><i class="mdi mdi-bulletin-board"></i
+            ><span class="hide-menu">Listados </span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item"> 
+              <a href="{% url 'Listados' %}" class="sidebar-link" 
+                ><i class="mdi mdi-chart-bubble"></i
+                ><span class="hide-menu">Listados</span></a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+</div>
+</aside>
+<!-- Fin Barra de Navegacion Lateral Izquierda -->

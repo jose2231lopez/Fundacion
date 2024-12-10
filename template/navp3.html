@@ -1,0 +1,35 @@
+<div class="row">
+    <!-- Listado de Beneficiarios y Proyectos -->
+    <div class="col">
+      <div class="card card-hover" >
+        <div class="box bg-success text-center">
+          <h1 class="font-light text-white">
+             {% if perms.principal.view_beneficiariosproyectos %}  <!-- Columna de permisos -->         
+            <i class="mdi mdi-note-outline"></i>
+            <a href="{% url 'principal1:leerBeneficiariosProyectos' %}">
+             {% endif %}
+              </h1>          
+              <h6 class="text-white">Beneficiarios_Proyectos</h6>
+            </a>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Listado de Beneficiarios y Proyectos -->
+
+    <!-- Listado de Proyectos y Actividades -->
+    <div class="col">
+      <div class="card card-hover" >
+        <div class="box bg-cyan  text-center">
+          <h1 class="font-light text-white">
+             <!--{% if perms.principal.view_proyectosactividades %}--> 
+            <i class="mdi mdi-chart-areaspline"></i>
+            <a href="{% url 'principal3:leerProyectosActividades' %}">
+             <!--{% endif %}-->
+              </h1>          
+              <h6 class="text-white">Proyectos_Actividades</h6>
+            </a>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Listado de Proyectos y Actividades -->
+</div>

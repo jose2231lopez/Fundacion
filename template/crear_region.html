@@ -1,0 +1,69 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Fundación Tierra de Paz</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/style.min.css' %}" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'assets/libs/bootstrap/dist/css/bootstrap.min.css' %}" />
+  </head>
+
+  <body>
+    <!-- Modal -->
+    <div class="modal fade" id="crearRegionModal" tabindex="-1" aria-labelledby="crearRegionModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="crearRegionModalLabel">Creación De Regiones</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="history.back()" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="region_id" class="form-label">N°-Actividades</label>
+                {{ form.region_id|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="departamento" class="form-label">Departamento</label>
+                {{ form.departamento|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="municipio" class="form-label">Municipio</label>
+                {{ form.municipio|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="vereda" class="form-label">Vereda</label>
+                {{ form.vereda|add_class:"form-control" }}
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button class="btn btn-secondary" type="button" onclick="history.back()">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = new bootstrap.Modal(document.getElementById("crearRegionModal"));
+        modal.show();
+      });
+    </script>
+    <!-- Fin Scripts -->
+  </body>
+</html>

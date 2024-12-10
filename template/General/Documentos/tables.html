@@ -1,0 +1,181 @@
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Fundación Tierra De Paz</title>
+    <!--  Favicon  -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png">
+    <!--  Stylesheet  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/extra-libs/multicheck/multicheck.css' %}"/>
+    <!--  CSS  -->
+    <link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet"/>
+    <!--  CSS  -->
+    <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet" />
+  </head>
+  
+  <body>
+    <!--  Preloader  -->
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+    <!--  Main Wrapper  -->
+    <div 
+    id="main-wrapper" 
+    data-layout="vertical" 
+    data-navbarbg="skin5" 
+    data-sidebartype="full" 
+    data-sidebar-position="absolute"
+    data-header-position="absolute" 
+    data-boxed-layout="full"
+    >
+      <!--  Barra de Navegacion  -->    
+      <header class="topbar" data-navbarbg="skin5">
+        {% include "nav.html" %}
+      </header>
+      <!--  Page Wrapper  -->
+      <div class="page-wrapper">
+        <!--  Page Breadcrumb  -->
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Parámetros</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'general' %}">General</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Documentos</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  Container Fluid  -->
+        <div class="container-fluid">
+          {% include "navp1.html" %}
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title mb-0">Creación De Documentos</h5>
+                </div>
+                <div class="card-body">
+                  <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-lg-7 mb-3">
+                        <label for="documento_id">N°-Documentos</label>
+                        {{ form.documento_id|add_class:"form-control" }}
+                      </div>
+
+                      <div class="col-lg-7 mb-3">
+                        <label for="beneficiario">Beneficiario</label>
+                          <div class="d-flex align-items-center">
+                           {{ form.beneficiario|add_class:"form-control me-2" }}
+                           <!--{% if perms.principal.add_beneficiarios %}-->
+                            <a href="{% url 'principal:crearBeneficiario' %}" class="btn btn-white" title="Crear Beneficiario">
+                             <i class="fas fa-plus"></i> 
+                            </a>
+                            <!--{% endif %}-->
+                          </div>
+                      </div>
+
+                      <div class="col-lg-7 mb-3">
+                        <label for="tipo_documento">Tipo De Documento</label>
+                        {{ form.tipo_documento|add_class:"form-control" }}
+                      </div>
+                      <div class="col-lg-7 mb-3">
+                        <label for="numero_documento_">Numero De Documento</label>
+                        {{ form.numero_documento|add_class:"form-control" }}
+                      </div>
+                      <div class="col-lg-7 mb-3">
+                        <label for="fecha_subida">Fecha De Subida</label>
+                        {{ form.fecha_subida|add_class:"form-control" }}
+                      </div>
+                      <!--{% if perms.principal.add_documentos %}-->
+                      <div class="col-lg-7">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <a href="{% url 'principal1:leerDocumentos' %}" class="btn btn-primary">Cancelar</a>
+                      </div>
+                      <!--{% endif %}-->
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <!--  Lista de Documentos  -->
+                  <h5 class="card-title">Lista de Documentos</h5>
+                  <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>N°-Documentos</th>
+                          <th>Nombres y Apellidos</th>
+                          <th>Tipo De Documento</th>
+                          <th>Numero De Documento</th>
+                          <th>Fecha De Subida</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for documentos in object_list %}
+                          <tr>
+                            <td>{{ documentos.documento_id }}</td>
+                            <td>{{ documentos.beneficiario }}</td>
+                            <td>{{ documentos.tipo_documento }}</td>
+                            <td>{{ documentos.numero_documento }}</td>
+                            <td>{{ documentos.fecha_subida}}</td>
+                            <td>
+                              <div class="btn-group">
+                                <a href="detalle/{{ documentos.documento_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% if perms.principal.change_documentos %}-->
+                                <a href="editar/{{ documentos.documento_id }}" title="Editar" class="btn btn-primary">Editar</a>
+                                <!--{% endif %}-->
+                                <!--{% if perms.principal.delete_documentos %}-->
+                                <form method="POST" action="eliminar/{{ documentos.documento_id }}" onsubmit="return confirm('¿Estás seguro de eliminar este campo?');">
+                                  {% csrf_token %}
+                                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                                <!--{% endif %}-->
+                              </div>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <script>
+                      $("#zero_config").DataTable();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  Scripts  -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/sparkline/sparkline.js' %}"></script>
+    <script src="{% static 'dist/js/waves.js' %}"></script>
+    <script src="{% static 'dist/js/sidebarmenu.js' %}"></script>
+    <script src="{% static 'dist/js/custom.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/DataTables/datatables.min.js' %}"></script>
+    <!-- Fin Scripts -->
+  </body>
+</html>

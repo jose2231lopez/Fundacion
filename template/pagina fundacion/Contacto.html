@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Fundacion Tierra De Paz</title>
+    <!--  Favicon  -->
+    <link rel="icon" href="/static/img/descarga.png">
+    <!--  CSS  -->
+    <link rel="stylesheet" href="/static/css/css/reset.css">
+    <!--  CSS  -->
+    <link rel="stylesheet" href="/static/css/css/stylehome.css">
+</head>
+
+<!--  Redes Sociales   -->
+<body>
+  <div class="social-header">
+     <a href="https://www.instagram.com/fundaciontierradepaz/" target="_blank">
+        <img src="/static/img/instagram2.png" alt="Instagram">
+     </a>
+     <a href="https://www.facebook.com/funtierradepaz/" target="_blank">
+        <img src="/static/img/facebook3.png" alt="Facebook">
+     </a>
+     <a href="https://www.youtube.com/channel/UCIarzbmGshIZJ5zbGo3bEtA" target="_blank">
+        <img src="/static/img/youtube2.png" alt="YouTube">
+     </a>
+     <a href="https://www.youtube.com/channel/UCIarzbmGshIZJ5zbGo3bEtA" target="_blank">
+        <img src="/static/img/twitter.png" alt="Twitter">
+     </a>
+ </div>
+ <!--  Fin Redes Sociales -->
+
+    <!-- Menu De Navegacion -->
+    <header>
+        <div class="caja">
+            <h1><img  src="/static/img/TDP-Horizontal-Full-Color.png" href="{% url 'index1' %}" class="Fundacion"></h1>
+               <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+               <li class="nav-item active">
+               <a class="nav-link" href="{% url 'index1' %}">Inicio</a>
+               </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'La_fundacion' %}">La Fundacion</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link " href="{% url 'login' %}">Iniciar Sesion</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link " href="{% url 'registro' %}">Registrate</a>
+              </li>
+             </ul>
+       </div>
+             </nav>
+             </div>  
+  </header>
+  <!-- Fin Menu De Navegacion -->
+
+  <!-- Formulario De Contacto  -->
+    <main>
+     <div class="form-container">
+        <form class="contacto-form">
+        
+            <label for="nombreapellido">Nombres y Apellidos</label>
+            <input type="text" id="nombreapellido" class="input-padron" required/>
+            
+            <label for="correoelectronico">Correo Electrónico</label>
+            <input type="email" id="correoelectronico" class="input-padron" required placeholder="email@dominio.com">
+            
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" class="input-padron" required placeholder="(XX) XXXX XXXX"/>
+
+            <label for="mensaje">Mensaje</label>
+            <textarea cols="70" rows="10" id="mensaje" class="input-padron" required></textarea>
+            
+            <fieldset>
+                <legend>¿Cómo le gustaría que lo contactemos?</legend>
+                <label for="radio-email"><input type="radio" name="contacto" value="email" id="radio-email"/>Correo Electronico</label>
+                
+                <label for="radio-telefono"><input type="radio" name="contacto" value="telefono" id="radio-telefono"/>Celular</label>
+               
+                <label for="radio-whatsapp"><input type="radio" name="contacto" value="whatsapp" id="radio-whatsapp" checked/>Whatsapp</label>
+            </fieldset>
+            
+            <fieldset>
+                <legend>¿En que horario gusta ser atendido ?</legend>
+                <select>
+                    <option>Mañana</option>
+                    <option>Tarde</option>
+                    <option>Noche</option>
+                </select>
+            </fieldset>
+            
+            <label class="checkbox"><input type="checkbox" checked/>¿Le gustaría recibir noticias sobre la Fundación?</label>
+            <input type="submit" value="Enviar Formulario" class="enviar"/>
+        </form>
+     </div>
+  </main>
+  <!--  Fin Formulario de Contacto  -->
+
+  <!--  Footer  -->
+  <footer>
+     <div>
+       <img width="190px" height="190px" src="/static/img/logoftdp.png">
+       <p class="copyright">&copy Copyright Fundacion Tierra De Paz</p>
+     </div>
+  </footer> 
+  <!--  Fin Footer  -->
+</body>
+</html>

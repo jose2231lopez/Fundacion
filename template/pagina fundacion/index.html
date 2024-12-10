@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Fundacion Tierra De Paz</title>
+    <!--  Favicon  -->
+    <link rel="icon" href="static\img\descarga.png">
+    <!--  CSS  -->
+    <link rel="stylesheet" href="static\css\css\reset.css">
+    <!--  CSS  -->
+    <link rel="stylesheet" href="static\css\css\stylehome.css"> 
+</head>
+
+<!--  Iconos De Redes Sociales  -->
+<body>
+  <div class="social-header">
+     <a href="https://www.instagram.com/fundaciontierradepaz/" target="_blank">
+        <img src="static/img/instagram2.png" alt="Instagram">
+     </a>
+     <a href="https://www.facebook.com/funtierradepaz/" target="_blank">
+        <img src="static/img/facebook3.png" alt="Facebook">
+     </a>
+     <a href="https://www.youtube.com/channel/UCIarzbmGshIZJ5zbGo3bEtA" target="_blank">
+        <img src="static/img/youtube2.png" alt="YouTube">
+     </a>
+     <a href="https://www.youtube.com/channel/UCIarzbmGshIZJ5zbGo3bEtA" target="_blank">
+        <img src="static/img/twitter.png" alt="Twitter">
+     </a>
+ </div>
+ <!--  Fin Iconos De Redes Sociales  -->
+
+    <!--  Barra de Navegacion  -->
+    <header>
+        <div class="caja">
+           <h1>
+         <a href="{% url 'index1' %}">
+           <img src="static/img/TDP-Horizontal-Full-Color.png" class="Fundacion">
+         </a>
+          </h1>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">Inicio</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="La_fundacion">La Fundacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Iniciar Sesion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="registro">Registrate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="Contacto">Contactenos</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!--  Fin Barra De Navegacion  -->
+    
+    <!--  Cuadros De Texto  -->
+    <div class="banner-container">
+        <img class="banner" src="static/img/banner.jpg" alt="Banner">
+        <div class="banner-text">
+            15 Años<br>
+            Trabajando por la<br>
+            protección de la vida
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-box">
+            <h2>Nuestros Principios</h2>
+            <p>Humanidad, imparcialidad, independencia y neutralidad.</p>
+        </div>
+
+        <div class="info-box">
+            <h2>Acreditación</h2>
+            <p>La Fundación Tierra de Paz es una de las 33 organizaciones con renovación de la acreditación y autorización para realizar actividades de ERM en Colombia ante la Oficina del Alto Comisionado para la Paz – OACP.</p>
+        </div>
+
+        <div class="info-box">
+            <h2>Coordinación</h2>
+            <p>Somos la única organización defensora de víctimas -ODV- en la Mesa de Participación efectiva de víctimas del departamento del Cauca.</p>
+        </div>
+    </div>
+    <!--  Fin Cuadros De Texto  -->
+    
+    <!--  Ejes De Accion  -->
+    <div class="action-bar">
+        <hr>
+        <h2>Ejes de Acción</h2>
+    </div>
+    <!--  Fin Ejes De Accion  -->
+
+    <!--  Accion Humanitaria  -->
+    <div class="accion-humanitaria-container">
+        <div class="texto">
+            <h3>Acción Humanitaria</h3>
+            <p>
+                Agrupa el conjunto de profesionales y trabajadores de la fundación interesados y/o involucrados en las acciones destinadas a la defensa, protección y ayuda de los seres humanos, cuyos derechos fundamentales se encuentran seriamente amenazados o afectados por catástrofes naturales o por conflictos civiles y/o armados.
+            </p>
+        </div>
+        <div class="imagen">
+            <img src="static/img/accion-humanitaria.jpg" alt="Acción Humanitaria" width="600px">
+        </div>
+    </div>
+    <!--  Fin Accion Humanitaria  -->
+    
+    <!--  Desarrollo Sostenible  -->
+    <div class="desarrollo-sostenible-container">
+        <div class="imagen">
+            <img src="static/img/desarrollo-sostenible.jpg" alt="Desarrollo Sostenible" width="600px">
+        </div>
+        <div class="texto">
+            <h3>Desarrollo Sostenible</h3>
+            <p>
+             El área de desarrollo sostenible tiene como propósito promover y difundir los principios del desarrollo sostenible, centrados en la búsqueda de soluciones al deterioro ambiental que permita mejorar las condiciones de vida de las comunidades, basados en la ecoeficiencia como estrategia de gestión y que dinamicen la economía rural.
+            </p>
+        </div>
+    </div>
+    <!--  Fin Desarrollo Sostenible  -->
+
+    <!--  Footer  -->
+    <footer>
+        <div>
+            <img width="190px" height="190px" src="static/img/logoftdp.png">
+            <p class="copyright">&copy Copyright Fundacion Tierra De Paz</p>
+        </div>
+    </footer>
+    <!--  Fin Footer -->
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+/* base.css */
+
+/* Aplicar un ancho y centrar el formulario */
+form {
+  min-height: 400px;
+  width: 350px;
+  margin: auto ;
+  padding: 35px;
+  background-color: #948080;
+  backdrop-filter: blur(20px);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-family: Poppins;
+  font-size: 18px;
+  color: #fafafa;
+  }
+  
+  /* Estilos para los campos del formulario */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Estilo para el botón de envío */
+  input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  /* Estilo para las etiquetas del formulario (opcional) */
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+  }
+  

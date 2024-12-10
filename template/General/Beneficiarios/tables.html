@@ -1,0 +1,204 @@
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Fundación Tierra De Paz</title>
+    <!--  Favicon  -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png">
+    <!--  Stylesheet  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/extra-libs/multicheck/multicheck.css' %}"/>
+    <!--  CSS  -->
+    <link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet"/>
+    <!--  CSS  -->
+    <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  </head>
+
+  <body>
+    <!--  Preloader  -->
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+    <!--  Main Wrapper  -->
+    <div 
+      id="main-wrapper" 
+      data-layout="vertical" 
+      data-navbarbg="skin5" 
+      data-sidebartype="full" 
+      data-sidebar-position="absolute" 
+      data-header-position="absolute" 
+      data-boxed-layout="full"
+    >
+      <!--  Barra de Navegacion  -->
+      <header class="topbar" data-navbarbg="skin5">
+        {% include "nav.html" %}
+      </header>
+      <!--  Page Wrapper  -->
+      <div class="page-wrapper">
+        <!--  Page Breadcrumb  -->
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Parámetros</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'general' %}">General</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Beneficiarios</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  Container Fluid  -->
+        <div class="container-fluid">
+          {% include "navp1.html" %}
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title mb-0">Creación De Beneficiarios</h5>
+                </div>
+                <div class="card-body">
+                  <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-lg-7 mb-3">
+                        <label for="beneficiario_id">N°-Beneficiario</label>
+                        {{ form.beneficiario_id|add_class:"form-control" }}
+                      </div>
+                      <div class="col-lg-7 mb-3">
+                        <label for="nombre">Nombres</label>
+                        {{ form.nombre|add_class:"form-control" }}
+                      </div>
+                      <div class="col-lg-7 mb-3">
+                        <label for="apellido">Apellidos</label>
+                        {{ form.apellido|add_class:"form-control" }}
+                      </div>
+                     <div class="col-lg-7 mb-3">
+                        <label for="genero">Genero</label>
+                        {{ form.genero|add_class:"form-control" }}
+                      </div>
+                      <div class="col-lg-7 mb-3">
+                        <label for="telefono">Telefono</label>
+                        {{ form.telefono|add_class:"form-control" }}
+                      </div>
+                      <div class="col-lg-7 mb-3">
+                        <label for="grupo_etnico">Grupo Etnico</label>
+                        {{ form.grupo_etnico|add_class:"form-control" }}
+                      </div>
+                      <div class="col-lg-7 mb-3">
+                        <label for="email">Correo Electronico</label>
+                        {{ form.email|add_class:"form-control" }}
+                      </div>
+                     <div class="col-lg-7 mb-3">
+                        <label for="fecha_registro" class="form-label">Fecha De Registro</label>
+                        <input type="date" name="fecha_registro" class="form-control" required id="id_fecha_registro">
+                      </div>
+                      <!--{% if perms.principal.change_beneficiarios %}-->
+                      <div class="col-lg-7">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <a href="{% url 'principal1:leerBeneficiarios' %}" class="btn btn-primary">Cancelar</a>
+                      </div>
+                      <!--{% endif %}-->
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <!--  Lista de Beneficiarios  -->
+                  <h5 class="card-title">Lista de Beneficiarios</h5>
+                  <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>N°-Beneficiarios</th>
+                          <th>Nombres</th>
+                          <th>Apellidos</th>
+                          <th>Genero</th>
+                          <th>Telefono</th>
+                          <th>Grupo Etnico</th>
+                          <th>Correo Electronico</th>
+                          <th>Fecha Del Registro</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for beneficiarios in object_list %}
+                          <tr>
+                            <td>{{ beneficiarios.beneficiario_id }}</td>
+                            <td>{{ beneficiarios.nombre }}</td>
+                            <td>{{ beneficiarios.apellido }}</td>
+                            <td>{{ beneficiarios.genero }}</td>
+                            <td>{{ beneficiarios.telefono }}</td>
+                            <td>{{ beneficiarios.grupo_etnico }}</td>
+                            <td>{{ beneficiarios.email }}</td>
+                            <td>{{ beneficiarios.fecha_registro }}</td>
+                            <td>
+                              <div class="btn-group">
+                                <a href="detalle/{{ beneficiarios.beneficiario_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% if perms.principal.change_beneficiarios %}-->
+                                <a href="editar/{{ beneficiarios.beneficiario_id }}" title="Editar" class="btn btn-primary">Editar</a>
+                                <!--{% endif %}-->
+                                <!--{% if perms.principal.delete_beneficiarios %}-->
+                                <form method="POST" action="eliminar/{{ beneficiarios.beneficiario_id }}" onsubmit="return confirm('¿Estás seguro de eliminar este campo?');">
+                                  {% csrf_token %}
+                                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                                <!--{% endif %}-->
+                              </div>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <script>
+                      $("#zero_config").DataTable();
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  Scripts  -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/sparkline/sparkline.js' %}"></script>
+    <script src="{% static 'dist/js/waves.js' %}"></script>
+    <script src="{% static 'dist/js/sidebarmenu.js' %}"></script>
+    <script src="{% static 'dist/js/custom.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/DataTables/datatables.min.js' %}"></script>
+    <script>
+    $(function() {
+        $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1900:2024" 
+        });
+    });
+    </script>
+    <!-- Fin scripts  -->
+  </body>
+</html>

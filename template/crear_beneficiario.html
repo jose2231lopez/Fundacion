@@ -1,0 +1,84 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Fundación Tierra de Paz</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png" />
+    <!--  CSS  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/style.min.css' %}" />
+    <!--  CSS  -->
+    <link rel="stylesheet" href="{% static 'assets/libs/bootstrap/dist/css/bootstrap.min.css' %}" />
+  </head>
+
+  <body>
+    <!-- Modal -->
+    <div class="modal fade" id="crearBeneficiarioModal" tabindex="-1" aria-labelledby="crearBeneficiarioModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="crearBeneficiarioModalLabel">Creación De Beneficiarios</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="history.back()" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="beneficiario_id" class="form-label">N°-Beneficiarios</label>
+                {{ form.beneficiario_id|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombres</label>
+                {{ form.nombre|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="apellido" class="form-label">Apellidos</label>
+                {{ form.apellido|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="genero" class="form-label">Genero</label>
+                {{ form.genero|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Telefono</label>
+                {{ form.telefono|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="grupo_etnico"class="form-label">Grupo etnico</label>
+                {{ form.grupo_etnico|add_class:"form-control" }}
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo Electronico</label>
+                {{ form.email|add_class:"form-control" }}
+              </div>
+              <div class="mb-3">
+                <label for="fecha_registro" class="form-label">Fecha de Registro</label>
+                {{ form.fecha_registro|add_class:"form-control" }}
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button class="btn btn-secondary" type="button" onclick="history.back()">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = new bootstrap.Modal(document.getElementById("crearBeneficiarioModal"));
+        modal.show();
+      });
+    </script>
+    <!-- Fin Scripts -->
+  </body>
+</html>

@@ -1,0 +1,570 @@
+body{
+    font-family: inherit !important;
+}
+
+/*  Encabezado de Redes Sociales  */
+.social-header {
+    background-color: #A4BD3F;
+    padding: 5px;
+    text-align: right;
+    color: white;
+}
+
+.social-header a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-header img {
+    width: 20px;
+    vertical-align: middle;
+}
+/**  Fin Encabezado De Redes Sociales **/
+
+/**  Encabezado  **/
+header{
+    background-color: #fefefe;
+    padding: 20px 0;
+}
+/** Fin De Encabezado**/
+.caja{
+    width: 940px;
+    position: relative;
+    margin: 10 auto;
+}
+
+/** Logo **/
+.Fundacion {
+    display: inline-block;
+    max-width: 250px;
+    height: auto;
+    margin-right: 0px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    margin: 0; 
+}
+/** Barra de Navegacion **/
+nav{
+    position: absolute;
+    top: 40px;
+    right: -250px;
+}
+
+nav li{
+    display: inline;
+    margin: 0 0 0 40px;
+}
+
+nav a{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+nav a:hover{
+    color: #28a745;
+    text-decoration: underline;
+}
+
+.navbar-nav .nav-link {
+    color:  rgba(53, 161, 213, 1) !important; 
+    font-weight: bold; 
+}
+
+.navbar-nav .nav-link:hover {
+    color:#A4BD3F!important; 
+}
+
+.banner{
+    width: 100%;  
+}
+
+.fondo{
+    width: 100%;
+    height: 850px;
+}
+
+.login-box, .restablece-box{
+    position: absolute;
+    width: 350px;
+    margin: 0 auto;
+    padding: 50px 20px; 
+    color: #000;
+    left: 40%;
+    top: 40%;
+    box-sizing: border-box;
+    border-radius: 7%;
+    backdrop-filter: blur(10px); 
+}
+
+.login-box  .logo2, .restablece-box .logo2{
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left:calc(50% - 50px);
+}
+
+.login-box h1, .restablece-box h1{
+    display: block;
+    padding: 0 0 20px; 
+    text-align: center;
+    font-size: 22px;
+}
+
+form label{
+    display: block;
+    margin:0;
+    padding:0;
+    font-weight: bold;
+}
+
+.inputs-login, .inputs-restablece{
+    display: block;
+    margin: 0 0 20px;
+    padding: 10px 20px;
+    width: 85%;
+    margin-bottom: 20px;
+    border:none;
+    border-bottom: 1px solid rgb(34, 44, 136); 
+    background: transparent;
+    outline: none;
+    height: 25px;
+    color: #000;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.ingresar, .restablecer{
+    display: block;
+    width: 85%;
+    height: 40px;
+    padding: 5px 0;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: red ;
+    border: none;
+    border-radius: 20px;
+    transition: 1s all;
+    cursor: pointer;
+    outline: none;  
+}
+
+.ingresar:hover, .restablecer:hover{
+    background: rgb(99, 48, 48);
+    transform: scale(1.1); 
+}
+
+form a{ 
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 15px;
+    line-height: 20px;
+    color: black;
+}
+
+.login-box a:hover, .registrarse-box a:hover, .restablece-box a:hover{
+    color: rgb(255, 0, 0); 
+}
+
+footer{
+    position: relative;
+    text-align: center;
+    background: linear-gradient(#FEFEFE,#FEFEFE);
+    padding: 50px;
+}
+/**  Redes Sociales  **/
+
+.redes-sociales{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    margin-top: 2em;
+    margin-left: 5%;
+}
+
+.redes-sociales img{
+    height: 30px;
+    width: 30px;
+}
+/**  Fin Redes Sociales  **/
+
+.registrarse:hover{
+    background: rgb(99, 48, 48);
+    transform: scale(1.1); 
+}
+
+.registrarse-box{
+    position: absolute;     
+    width: 350px;
+    margin: 0 auto;
+    padding: 50px 10px; 
+    color: #000;
+    top:25%; 
+    left: 40%; 
+    box-sizing: border-box;
+    border-radius: 7%;
+    backdrop-filter: blur(10px); 
+}
+/** Formualrio De Registro**/
+.registrarse-box  .logo2{
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left:calc(50% - 50px);
+}
+
+.registrarse-box h1{
+    display: block;
+    padding: 0 0 20px; 
+    text-align: center;
+    font-size: 22px;
+}
+
+.inputs-registro{
+    display: block ;
+    margin: 0 0 20px;
+    padding: 10px 20px;
+    width: 85%;
+    margin-bottom: 20px;
+    border:none;
+    border-bottom: 1px solid rgb(34, 44, 136); 
+    background: transparent;
+    outline: none;
+    height: 25px;
+    color: #000;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.registrarse{
+    display: block;
+    width: 85%;
+    height: 40px;
+    padding: 5px 0;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: red ;
+    border: none;
+    border-radius: 20px;
+    transition: 1s all;
+    cursor: pointer;
+    outline: none;
+}
+/** Fin Formualrio De Registro**/
+
+/** Formulario De Contacto **/
+.contacto-form{
+    margin: 40px 0;  
+}
+
+.contacto-form label, .contacto-form legend{
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+
+.input-padron{
+    display: block;
+    margin: 0 0 20px;
+    padding: 10px 25px;
+    width: 50%;
+}
+
+.checkbox{
+    margin: 20px 0;
+}
+
+.enviar{
+    background-color: var(--btn-color);
+    transition: 1s all;
+    width: 30% !important;
+    padding: 15px 0 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: white !important;
+    background: #A4BD3F !important;
+    border: none !important;
+    border-radius: 10px !important;
+    transition: 2s all !important;
+    cursor: pointer !important;
+}
+      
+.enviar:hover {
+    background-color: var(--btn-hover-color);
+}
+/** Fin De El Formulario De Contacto **/
+
+.image-container {
+    white-space: nowrap; 
+}
+  
+.image-container img {
+    display: inline-block; 
+    vertical-align: middle; 
+    width: 50%; 
+}
+
+/**  Banner  **/ 
+.banner-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    font-size: 2.9rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+/**  Fin Banner  **/  
+
+/**  Cuadros de texto  **/
+.info-section {
+    display: flex;
+    justify-content: space-around;
+    margin: 100px 0;
+}
+    
+.info-box {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+    
+.info-box h2 {
+    color:rgba(53, 161, 213, 1);
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+    
+.info-box p {
+    font-size: 1.5em;
+    color: #595a5a;
+}
+/**  Fin De Cuadros Texto  **/
+
+/**  Fundacion Titulo  **/
+.action-bar {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.action-bar h2 {
+    font-size: 3.5em;
+    margin-top: 10px;
+    color: rgba(53, 161, 213, 1);
+}
+
+.action-bar hr {
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid #A4BD3F; 
+}
+/**  Fin De Titulo Fundacion  **/
+
+/**  Accion humanitaria  **/
+.accion-humanitaria-container {
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.accion-humanitaria-container .texto h3 {
+    color: rgba(53, 161, 213, 1);
+    font-size: 2.0em;
+    margin-bottom: 50px;
+}
+
+.accion-humanitaria-container .texto {
+    flex: 1;
+    margin-right: 100px;
+    margin-left: 48px;
+    font-size: 1.5em;
+    margin-bottom: 50px;
+}
+
+.accion-humanitaria-container .imagen {
+    flex: 1;
+}
+
+.accion-humanitaria-container .imagen img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+}
+/**  Fin De Accion Humanitaria  **/
+
+/**  Desarrollo Sostenible  **/
+.desarrollo-sostenible-container {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    }
+
+.desarrollo-sostenible-container .imagen {
+    flex: 1;
+    margin-right: 40px;
+    }
+
+.desarrollo-sostenible-container .imagen img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    }
+
+.desarrollo-sostenible-container .texto {
+    flex: 1;
+    font-size: 1.5em;
+    margin-right: 48px;
+    margin-left: 100px;
+    }
+
+.desarrollo-sostenible-container .texto h3 {
+    color: rgba(53, 161, 213, 1);
+    font-size: 2.0em;
+    margin-bottom: 30px;
+    }
+/**  Fin Desarrollo Sostenible  **/
+
+/**  Mision  **/
+.mision-container {
+    display: flex;
+    align-items: center;
+    margin-top: 75px;
+}
+
+.mision-container .texto h3 {
+    color: rgba(53, 161, 213, 1);
+    font-size: 2.0em;
+    margin-bottom: 30px;
+}
+
+.mision-container .texto {
+    flex: 1;
+    margin-right: 100px;
+    margin-left: 48px;
+    font-size: 1.5em;
+}
+
+.mision-container .imagen {
+    flex: 1;
+}
+
+.mision-container .imagen img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+}
+/**  Fin De Mision  **/
+
+/**  Vision  **/
+.vision-container {
+    display: flex;
+    align-items: center;
+    margin-top: 75px;
+    }
+
+.vision-container .imagen {
+    flex: 1;
+    margin-right: 40px;
+    }
+
+.vision-container .imagen img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    }
+
+.vision-container .texto {
+    flex: 1;
+    font-size: 1.5em;
+    margin-right: 48px;
+    margin-left: 100px;
+    }
+
+.vision-container .texto h3 {
+    color: rgba(53, 161, 213, 1);
+    font-size: 2.0em;
+    margin-bottom: 30px;
+    }
+/**  Fin De Vision  **/    
+ 
+/**  Historia  **/
+.historia-container {
+    display: flex;
+    align-items: center;
+    margin-top: 75px;
+}
+
+.historia-container .texto h3 {
+    color: rgba(53, 161, 213, 1);
+    font-size: 2.0em;
+    margin-bottom: 30px;
+}
+
+.historia-container .texto {
+    flex: 1;
+    margin-right: 100px;
+    margin-left: 48px;
+    font-size: 1.5em;
+}
+
+.historia-container .imagen {
+    flex: 1;
+}
+
+.historia-container .imagen img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+}
+/**  Fin de Historia  **/
+
+/**  Ejes De Accion  **/
+.ejes-accion-bar {
+    text-align: center;
+    margin: 90px 0;
+}
+
+.ejes-accion-bar h2 {
+    font-size: 3.5em;
+    margin-top: 10px;
+    color: rgba(53, 161, 213, 1);
+}
+
+.ejes-accion-bar hr {
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid #A4BD3F; 
+}
+/**  Fin Ejes De Accion  **/

@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Fundación Tierra De Paz</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png">
+    <!-- CSS -->
+    <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet" />
+    <!-- CSS -->
+    <link href="{% static 'css/css/stylehome.css'%}" rel="stylesheet"/>
+    <!-- CSS -->
+    <link href="{% static 'css/css/reset.css'%}" rel="stylesheet"/>
+</head>
+
+<body>
+  <!-- Redes Sociales -->
+  <div class="social-header">
+    <a href="https://www.instagram.com/fundaciontierradepaz/" target="_blank">
+    </a>
+    <a href="https://www.facebook.com/funtierradepaz/" target="_blank">
+    </a>
+    <a href="https://www.youtube.com/channel/UCIarzbmGshIZJ5zbGo3bEtA" target="_blank">
+    </a>
+    <a href="https://www.youtube.com/channel/UCIarzbmGshIZJ5zbGo3bEtA" target="_blank">
+    </a>
+  </div>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-white">
+            <div class="auth-box bg-white border-top border-secondary">
+                <div id="loginform">
+                    <div class="text-center pt-20 pb-20">
+                        <span class="db">
+                            <img src="{% static 'assets/images/logoftdp.png' %}" alt="logo" />
+                        </span>
+                    </div>
+                    <!-- Formulario de login -->
+                    <form class="form-horizontal mt-3" id="login-form" method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="row pb-4">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-success text-white h-100" id="basic-addon1">
+                                            <i class="mdi mdi-account fs-4"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        class="form-control form-control-lg"
+                                        placeholder="Usuario"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        required
+                                    />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-success text-white h-100" id="basic-addon2">
+                                            <i class="mdi mdi-lock fs-4"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        class="form-control form-control-lg"
+                                        placeholder="Contraseña"
+                                        aria-label="Password"
+                                        aria-describedby="basic-addon2"
+                                        required
+                                    />
+                                    </div>
+                                    {% if form.errors %}
+                                    <p>Su nombre de usuario y contraseña no coinciden. Por favor, vuelva a intentarlo.</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        <div class="row border-top border-secondary">
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <div class="pt-3">
+                                        <button class="btn btn-success btn-lg float-end text-white " type="submit" style="width: 200px;">
+                                            Ingresar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Fin Formulario De Ingreso-->
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- Scripts -->
+ <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+ <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'js/js/login.js' %}"></script>
+ <script>
+        $(".preloader").fadeOut();
+        $("#to-recover").on("click", function () {
+            $("#loginform").slideUp();
+            $("#recoverform").fadeIn();
+        });
+        $("#to-login").click(function () {
+            $("#recoverform").hide();
+            $("#loginform").fadeIn();
+        });
+ </script>
+ <!-- Fin scripts -->
+</body>
+</html>

@@ -1,0 +1,26 @@
+/* Estilos para la tabla dinámica */
+.table {
+    width: 100%; /* Hace que la tabla ocupe todo el ancho disponible */
+    border-collapse: collapse; /* Fusiona los bordes de la tabla */
+  }
+  
+  /* Estilos para las celdas de la tabla */
+  .table td,
+  .table th {
+    padding: 0.200 rem; /* Espaciado interno de las celdas */
+    max-width: 100%;
+    vertical-align: middle; /* Alinea el contenido de las celdas verticalmente */
+    border-top: none; /* Quita la línea superior de las celdas */
+  }
+  
+  /* Estilos para las filas alternas de la tabla */
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f0f8ff; /* Color azul claro */
+  }
+  
+  /* Estilos para la última columna de la tabla */
+  .table tbody tr td:last-child {
+    background-color: #699669; /* Color verde */
+    color: #7b0606; /* Texto en blanco */
+  }
+  

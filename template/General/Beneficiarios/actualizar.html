@@ -1,0 +1,158 @@
+{% load bootstrap4 %}
+{% bootstrap_css%}
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Fundación Tierra de Paz</title>
+    <!--  Favicon  -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png">
+    <!--  Stylesheets  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/extra-libs/multicheck/multicheck.css' %}" />
+    <!--  CSS  -->
+    <link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet" />
+    <!--  CSS  -->
+    <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!--  Preloader  -->
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+    <!--  Main Wrapper  -->
+    <div 
+     id="main-wrapper" 
+     data-layout="vertical" 
+     data-navbarbg="skin5" 
+     data-sidebartype="full" 
+     data-sidebar-position="absolute" 
+     data-header-position="absolute" 
+     data-boxed-layout="full"
+     >
+      <!--  Barra de Navegacion  -->
+      <header class="topbar" data-navbarbg="skin5">
+        {% include "nav.html" %}
+      </header>
+      <!--  Page Wrapper  -->
+      <div class="page-wrapper">
+        <!--  Page Breadcrumb  -->
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Actualización De Datos</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'general' %}">General</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'principal1:leerBeneficiarios' %}">Beneficiarios</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  Container Fluid  -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title mb-0">Tabla Beneficiarios</h5>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <!-- Tabla Beneficiarios -->
+                      <div class="table-responsive">
+                      <table id="table">
+                        <thead>
+                          <tr>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="beneficiario_id">N°-Beneficiarios</label>
+                                {{ form.beneficiario_id|add_class:"form-control" }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="nombre">Nombres</label>
+                                {{ form.nombre }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="apellido">Apellidos</label>
+                                {{ form.apellido }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="genero">Genero</label>
+                                {{ form.genero }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="telefono">Telefono</label>
+                                {{ form.telefono }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="grupo_etnico">Grupo Etnico</label>
+                                {{ form.grupo_etnico }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="email">Correo Electronico</label>
+                                {{ form.email }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="fecha_registro">Fecha Del Registro</label>
+                                {{ form.fecha_registro }}
+                            </td>
+                          </tr>
+                        </thead>
+                      </table>
+                      <div class="col-lg-7 mt-3">
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <a href="{% url 'principal1:leerBeneficiarios' %}" class="btn btn-primary">Cancelar</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Scripts -->
+    <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/sparkline/sparkline.js' %}"></script>
+    <script src="{% static 'dist/js/waves.js' %}"></script>
+    <script src="{% static 'dist/js/sidebarmenu.js' %}"></script>
+    <script src="{% static 'dist/js/custom.min.js' %}"></script>
+    <script src="{% static 'assets/extra-libs/DataTables/datatables.min.js' %}"></script>
+    <script>
+      $("#zero_config").DataTable();
+    </script>
+    <!-- Fin scripts -->
+  </body>
+</html>
