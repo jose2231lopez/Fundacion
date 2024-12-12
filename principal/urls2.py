@@ -16,10 +16,10 @@ urlpatterns = [
     path('Notificaciones/eliminar/<int:pk>', NotificacionesEliminar.as_view(template_name='Otros/Notificaciones/eliminar.html')), 
     ##----------------------------------------------------------Fin Crud Notificaciones---------------------------------------------------------------##
     ##----------------------------------------------------------Crud Proyectos---------------------------------------------------------------##
-    path('Proyectos/', ListadoProyectos.as_view(template_name="GENERAL/Proyectos/tables.html"), name='leerProyectos'), 
-    path('Proyectos/detalle/<int:pk>', ProyectosDetalle.as_view(template_name="GENERAL/Proyectos/detalle.html"), name='detalleProyectos'),
-    path('Proyectos/editar/<int:pk>', ProyectosActualizar.as_view(template_name="GENERAL/Proyectos/actualizar.html"), name='actualizarProyectos'), 
-    path('Proyectos/eliminar/<int:pk>', ProyectosEliminar.as_view(template_name='GENERAL/Proyectos/eliminar.html')), 
+    path('Proyectos/', ListadoProyectos.as_view(template_name="General/Proyectos/tables.html"), name='leerProyectos'), 
+    path('Proyectos/detalle/<int:pk>', ProyectosDetalle.as_view(template_name="General/Proyectos/detalle.html"), name='detalleProyectos'),
+    path('Proyectos/editar/<int:pk>', ProyectosActualizar.as_view(template_name="General/Proyectos/actualizar.html"), name='actualizarProyectos'), 
+    path('Proyectos/eliminar/<int:pk>', ProyectosEliminar.as_view(template_name='General/Proyectos/eliminar.html')), 
     ##----------------------------------------------------------Fin Crud Proyectos---------------------------------------------------------------##
     ##----------------------------------------------------------Crud Recursos---------------------------------------------------------------##
     path('Recursos/', ListadoRecursos.as_view(template_name="Otros/Recursos/tables.html"), name='leerRecursos'), 
