@@ -4,10 +4,10 @@ from principal.views3 import *
 
 urlpatterns = [
     ##----------------------------------------------------------Crud Regiones---------------------------------------------------------------##
-    path('Regiones/', ListadoRegiones.as_view(template_name="GENERAL/Regiones/tables.html"), name='leerRegiones'), 
-    path('Regiones/detalle/<int:pk>', RegionesDetalle.as_view(template_name="GENERAL/Regiones/detalle.html"), name='detalleRegiones'),
-    path('Regiones/editar/<int:pk>', RegionesActualizar.as_view(template_name="GENERAL/Regiones/actualizar.html"), name='actualizarRegiones'), 
-    path('Regiones/eliminar/<int:pk>', RegionesEliminar.as_view(template_name='GENERAL/Regiones/eliminar.html')), 
+    path('Regiones/', ListadoRegiones.as_view(template_name="General/Regiones/tables.html"), name='leerRegiones'), 
+    path('Regiones/detalle/<int:pk>', RegionesDetalle.as_view(template_name="General/Regiones/detalle.html"), name='detalleRegiones'),
+    path('Regiones/editar/<int:pk>', RegionesActualizar.as_view(template_name="General/Regiones/actualizar.html"), name='actualizarRegiones'), 
+    path('Regiones/eliminar/<int:pk>', RegionesEliminar.as_view(template_name='General/Regiones/eliminar.html')), 
     ##----------------------------------------------------------Fin Crud Regiones---------------------------------------------------------------##
     ##----------------------------------------------------------Crud Seguimientos---------------------------------------------------------------##
     path('Seguimientos/', ListadoSeguimientos.as_view(template_name="Otros/Seguimientos/tables.html"), name='leerSeguimientos'), 
