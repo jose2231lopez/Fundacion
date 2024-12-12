@@ -2,6 +2,7 @@
 {% bootstrap_css %}
 {% load widget_tweaks %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -31,14 +32,14 @@
     <!--  Main Wrapper  -->
     <div 
      id="main-wrapper" 
-     data-layout="vertical"
+     data-layout="vertical" 
      data-navbarbg="skin5" 
      data-sidebartype="full" 
      data-sidebar-position="absolute" 
      data-header-position="absolute" 
      data-boxed-layout="full"
      >
-      <!--  Menu de Navegacion  -->
+      <!--  Barra de Navegacion  -->
       <header class="topbar" data-navbarbg="skin5">
         {% include "nav.html" %}
       </header>
@@ -80,8 +81,14 @@
                           <tr>
                             <td>
                               <div class="col-lg-7">
-                                <label for="notificacion_id">N°-Notificaciones</label>
-                                {{ form.notificacion_id|add_class:"form-control" }}
+                                <label for="notificacion_id">N°Notificaciones</label>
+                                {{ form.notificacion_id }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="beneficiario">Beneficiario</label>
+                                {{ form.beneficiario }}
                               </div>
                             </td>
                             <td>
@@ -92,13 +99,7 @@
                             </td>
                             <td>
                               <div class="col-lg-7">
-                                 <label for="beneficiario">Beneficiario</label>
-                                 {{form.beneficiario }}
-                              </div>
-                            </td>   
-                            <td>
-                              <div class="col-lg-7">
-                                <label for="fecha_envio">Fecha De Envio</label>
+                                <label for="fecha_envio">Fecha de Envio</label>
                                 {{ form.fecha_envio }}
                               </div>
                             </td>
@@ -130,6 +131,6 @@
     <script>
       $("#zero_config").DataTable();
     </script>
-    <!-- Fin scripts -->
+    <!-- Fin Scripts -->
   </body>
 </html>
