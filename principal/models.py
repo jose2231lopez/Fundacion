@@ -249,6 +249,7 @@ class Donaciones(models.Model):
 
 class Notificaciones(models.Model):
     notificacion_id = models.AutoField(primary_key=True)
+    beneficiario = models.ForeignKey('Beneficiarios', null=True, blank=True, on_delete=models.SET_NULL)
     mensaje = models.TextField()
     fecha_envio = models.DateTimeField()
 
