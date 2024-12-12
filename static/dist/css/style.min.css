@@ -6211,7 +6211,8 @@ html[dir=ltr] body .p-l-0{
   min-height:calc(100vh - 180px)
 }
 .footer{
-  padding:15px 20px
+  padding:15px 20px;
+  margin-left:160px;
 }
 #main-wrapper[data-sidebartype=full] .page-wrapper{
   margin-left:250px
