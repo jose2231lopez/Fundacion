@@ -15,5 +15,5 @@ six==1.16.0
 soupsieve==2.6
 sqlparse==0.5.1
 tzdata==2024.1
-virtualenv==20.26.3
+virtualenv==20.26.6
 virtualenvwrapper-win==1.2.7
