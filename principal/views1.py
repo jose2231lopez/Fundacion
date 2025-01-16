@@ -1,3 +1,4 @@
+from django import apps
 from django.shortcuts import render, redirect
 from principal.models import *
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
@@ -27,6 +28,71 @@ def Home(request):
 def Parametros1(request):
 
     return render(request, "GENERAL/index.html")
+
+from django.apps import apps
+from django.db.models import Q
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
+
+from django.db.models.fields.related import ForeignKey
+
+def buscar_en_todas_las_tablas(request):
+    query = request.GET.get('q', '').strip()
+    resultados = []
+
+    if query:
+        modelos_a_buscar = [
+            'Proyectos',  # Incluye otros modelos si es necesario
+            'Actividades',
+            'Beneficiarios',
+            'Documentos',
+            'Seguimientos',
+            'BeneficiariosProyectos',
+            'ProyectosActividades',
+        ]
+
+        for modelo_nombre in modelos_a_buscar:
+            try:
+                modelo = apps.get_model('principal', modelo_nombre)
+                fields = modelo._meta.fields  # Obtén todos los campos del modelo
+                
+                # Construir filtros de búsqueda
+                filtros = Q()
+                for field in fields:
+                    if field.get_internal_type() in ['CharField', 'TextField']:
+                        filtros |= Q(**{f"{field.name}__icontains": query})
+                    elif field.get_internal_type() == 'IntegerField' and query.isdigit():
+                        filtros |= Q(**{f"{field.name}": int(query)})
+
+                queryset = modelo.objects.filter(filtros)
+
+                for obj in queryset:
+                    datos_objeto = {
+                        'campos': [],
+                        'valores': [],
+                    }
+                    for field in fields:
+                        field_name = field.verbose_name or field.name
+                        value = getattr(obj, field.name)
+
+                        # Manejar ForeignKeys mostrando su representación
+                        if isinstance(field, ForeignKey) and value:
+                            value = str(value)
+
+                        datos_objeto['campos'].append(field_name)
+                        datos_objeto['valores'].append(value)
+
+                    resultados.append({
+                        'tabla': modelo._meta.verbose_name,
+                        'id': obj.pk,
+                        'datos': datos_objeto,
+                    })
+            except LookupError:
+                continue
+
+    return render(request, 'resultados_busqueda.html', {'resultados': resultados, 'query': query})
 
 #Vista de el atajo para la tabla Documentos 
 def crear_beneficiario(request):

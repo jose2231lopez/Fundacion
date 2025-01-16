@@ -225,8 +225,6 @@ class Documentos(models.Model):
     ]
     tipo_documento = models.CharField(max_length=100, choices=TIPO_DOCUMENTO_CHOICES, blank=False, null=False)
     numero_documento = models.CharField(max_length=50, blank=False, null=False)
-    nombre_documento = models.CharField(max_length=255, blank=True, null=True)
-    ruta_documento = models.CharField(max_length=255, blank=True, null=True)
     fecha_subida = models.DateTimeField(auto_now_add=True)
 
     class Meta:

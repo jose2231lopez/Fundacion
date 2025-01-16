@@ -39,11 +39,12 @@
             href="javascript:void(0)"
             ><i class="mdi mdi-magnify fs-4"></i
           ></a>
-          <form class="app-search position-absolute">
+          <form class="app-search position-absolute" method="get" action="{% url 'buscar' %}">
             <input
               type="text"
               class="form-control"
-              placeholder="Search &amp; enter"
+              name="q"
+              placeholder="Buscar en todas las tablas"
             />
             <a class="srh-btn"><i class="mdi mdi-window-close"></i></a>
           </form>

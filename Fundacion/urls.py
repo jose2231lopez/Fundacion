@@ -23,5 +23,6 @@ path('Otros/', Parametros2, name= 'Otros'),
 path('Home1', Home1, name= 'index1'),
 path('Contacto/',Contacto, name= 'contacto'),
 path('La_fundacion/', La_fundacion, name= 'La_fundacion'),
-path('Listados/', Parametros3, name= 'Listados')
+path('Listados/', Parametros3, name= 'Listados'),
+path('buscar/', buscar_en_todas_las_tablas, name='buscar'),
 ]
