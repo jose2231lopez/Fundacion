@@ -1,20 +1,20 @@
 <div class="row">
-    <!-- Tabla De Donaciones -->
+    <!-- Tabla De Regiones -->
     <div class="col-md-6 col-lg-2 col-xlg-3">
       <div class="card card-hover" >
-        <div class="box bg-cyan text-center">
+        <div class="box bg-cyan   text-center">
           <h1 class="font-light text-white">
-             {% if perms.principal.view_donaciones %}  <!-- Columna De Permisos -->
-            <i class="mdi mdi-pencil"></i>
-            <a href="{% url 'principal2:leerDonaciones' %}">
-             {% endif %}
+             <!--{% if perms.principal.view_regiones %}-->    
+            <i class="mdi mdi-account-multiple"></i>
+            <a href="{% url 'principal3:leerRegiones' %}">
+             <!--{% endif %}-->
               </h1>          
-              <h6 class="text-white">Donaciones</h6>
+              <h6 class="text-white">Regiones</h6>
             </a>
         </div>
       </div>
     </div>
-    <!-- Fin Tabla De Donaciones -->
+    <!-- Fin Tabla De Regiones -->
 
     <!-- Tabla De Recursos -->
     <div class="col-md-6 col-lg-2 col-xlg-3">

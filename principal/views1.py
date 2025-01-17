@@ -39,12 +39,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.fields.related import ForeignKey
 
 def buscar_en_todas_las_tablas(request):
-    query = request.GET.get('q', '').strip()
+    query = request.GET.get('q', '').strip().lower()
     resultados = []
 
     if query:
         modelos_a_buscar = [
-            'Proyectos',  # Incluye otros modelos si es necesario
+            'Proyectos',
             'Actividades',
             'Beneficiarios',
             'Documentos',
@@ -56,16 +56,21 @@ def buscar_en_todas_las_tablas(request):
         for modelo_nombre in modelos_a_buscar:
             try:
                 modelo = apps.get_model('principal', modelo_nombre)
-                fields = modelo._meta.fields  # Obtén todos los campos del modelo
-                
-                # Construir filtros de búsqueda
-                filtros = Q()
-                for field in fields:
-                    if field.get_internal_type() in ['CharField', 'TextField']:
-                        filtros |= Q(**{f"{field.name}__icontains": query})
-                    elif field.get_internal_type() == 'IntegerField' and query.isdigit():
-                        filtros |= Q(**{f"{field.name}": int(query)})
+                fields = modelo._meta.fields
 
+                # Dividir la consulta en palabras clave
+                palabras = query.split()
+
+                # Construir filtros
+                filtros = Q()
+                for palabra in palabras:
+                    for field in fields:
+                        if field.get_internal_type() in ['CharField', 'TextField']:
+                            filtros |= Q(**{f"{field.name}__icontains": palabra})
+                        elif field.get_internal_type() == 'IntegerField' and palabra.isdigit():
+                            filtros |= Q(**{f"{field.name}": int(palabra)})
+
+                # Filtrar los datos del modelo
                 queryset = modelo.objects.filter(filtros)
 
                 for obj in queryset:
@@ -77,7 +82,7 @@ def buscar_en_todas_las_tablas(request):
                         field_name = field.verbose_name or field.name
                         value = getattr(obj, field.name)
 
-                        # Manejar ForeignKeys mostrando su representación
+                        # Manejar ForeignKeys
                         if isinstance(field, ForeignKey) and value:
                             value = str(value)
 
@@ -93,6 +98,7 @@ def buscar_en_todas_las_tablas(request):
                 continue
 
     return render(request, 'resultados_busqueda.html', {'resultados': resultados, 'query': query})
+
 
 #Vista de el atajo para la tabla Documentos 
 def crear_beneficiario(request):
