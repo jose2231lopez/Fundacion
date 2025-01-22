@@ -139,7 +139,9 @@
                             <td>{{ documentos.fecha_subida}}</td>
                             <td>
                               <div class="btn-group">
+                                <!--{% if perms.principal.view_documentos %}-->
                                 <a href="detalle/{{ documentos.documento_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% endif %}-->
                                 <!--{% if perms.principal.change_documentos %}-->
                                 <a href="editar/{{ documentos.documento_id }}" title="Editar" class="btn btn-primary">Editar</a>
                                 <!--{% endif %}-->

@@ -125,7 +125,9 @@
                             <td>{{ notificaciones.fecha_envio }}</td>
                             <td>
                               <div class="btn-group">
+                                <!--{% if perms.principal.view_notificaciones %}-->
                                 <a href="detalle/{{ notificaciones.notificacion_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% endif %}-->
                                 <!--{% if perms.principal.change_notificaciones %}-->
                                 <a href="editar/{{ notificaciones.notificacion_id }}" title="Editar" class="btn btn-primary">Editar</a>
                                 <!--{% endif %}-->

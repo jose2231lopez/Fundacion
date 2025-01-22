@@ -165,7 +165,9 @@
                             <td>{{ seguimientos.responsable }}</td>
                             <td>
                               <div class="btn-group">
+                                <!--{% if perms.principal.view_seguimientos %}-->
                                 <a href="detalle/{{ seguimientos.seguimiento_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% endif %}-->
                                 <!--{% if perms.principal.change_seguimientos %}-->
                                 <a href="editar/{{ seguimientos.seguimiento_id }}" title="Editar" class="btn btn-primary">Editar</a>
                                 <!-- {% endif %}-->

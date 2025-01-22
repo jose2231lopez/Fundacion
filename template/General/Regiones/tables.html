@@ -50,7 +50,7 @@
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'general' %}">General</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'Otros' %}">Otros</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Regiones</li>
                   </ol>
                 </nav>
@@ -60,7 +60,7 @@
         </div>
         <!--  Container Fluid  -->
         <div class="container-fluid">
-          {% include "navp1.html" %}
+          {% include "navp2.html" %}
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -125,7 +125,9 @@
                             <td>{{ regiones.vereda }}</td>
                             <td>
                               <div class="btn-group">
+                                <!--{% if perms.principal.view_regiones %}-->
                                 <a href="detalle/{{ regiones.region_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% endif %}-->
                                 <!--{% if perms.principal.change_regiones %}-->
                                 <a href="editar/{{ regiones.region_id }}" title="Editar" class="btn btn-primary">Editar</a>
                                 <!-- {% endif %}-->

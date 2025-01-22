@@ -136,7 +136,9 @@
                             <td>{{ donaciones.fecha_donacion }}</td>
                             <td>
                               <div class="btn-group">
+                                <!--{% if perms.principal.view_donaciones %}-->
                                 <a href="detalle/{{ donaciones.donacion_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% endif %}-->
                                 <!--{% if perms.principal.change_donaciones %}-->
                                 <a href="editar/{{ donaciones.donacion_id }}" title="Editar" class="btn btn-primary">Editar</a>
                                 <!--{% endif %}-->

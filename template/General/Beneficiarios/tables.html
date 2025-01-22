@@ -106,7 +106,7 @@
                         <label for="fecha_registro" class="form-label">Fecha De Registro</label>
                         <input type="date" name="fecha_registro" class="form-control" required id="id_fecha_registro">
                       </div>
-                      <!--{% if perms.principal.change_beneficiarios %}-->
+                      <!--{% if perms.principal.add_beneficiarios %}-->
                       <div class="col-lg-7">
                         <button type="submit" class="btn btn-success">Aceptar</button>
                         <a href="{% url 'principal1:leerBeneficiarios' %}" class="btn btn-danger">Cancelar</a>
@@ -152,7 +152,9 @@
                             <td>{{ beneficiarios.fecha_registro }}</td>
                             <td>
                               <div class="btn-group">
+                                <!--{% if perms.principal.view_beneficiarios %}-->
                                 <a href="detalle/{{ beneficiarios.beneficiario_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% endif %}-->
                                 <!--{% if perms.principal.change_beneficiarios %}-->
                                 <a href="editar/{{ beneficiarios.beneficiario_id }}" title="Editar" class="btn btn-primary">Editar</a>
                                 <!--{% endif %}-->

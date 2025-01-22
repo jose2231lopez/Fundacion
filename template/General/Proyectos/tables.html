@@ -169,7 +169,9 @@
                             <td>{{ proyectos.descripcion }}</td>
                             <td>
                               <div class="btn-group">
+                                <!--{% if perms.principal.view_proyectos %}-->
                                 <a href="detalle/{{ proyectos.proyecto_id }}" title="Ver" class="btn btn-success">Ver</a>
+                                <!--{% endif %}-->
                                 <!--{% if perms.principal.change_proyectos %}-->
                                 <a href="editar/{{ proyectos.proyecto_id }}" title="Editar" class="btn btn-primary">Editar</a>
                                 <!--{% endif %}-->

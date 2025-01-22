@@ -4,7 +4,7 @@
       <div class="card card-hover" >
         <div class="box bg-success text-center">
           <h1 class="font-light text-white">
-             {% if perms.principal.view_beneficiarios_proyectos %}  <!-- Columna de permisos -->         
+             {% if perms.principal.view_beneficiariosproyectos %}  <!-- Columna de permisos -->         
             <i class="mdi mdi-note-outline"></i>
             <a href="{% url 'principal1:leerBeneficiariosProyectos' %}">
              {% endif %}
@@ -21,7 +21,7 @@
       <div class="card card-hover" >
         <div class="box bg-cyan  text-center">
           <h1 class="font-light text-white">
-             <!--{% if perms.principal.view_proyectos_actividades %}--> 
+             <!--{% if perms.principal.view_proyectosactividades %}--> 
             <i class="mdi mdi-chart-areaspline"></i>
             <a href="{% url 'principal3:leerProyectosActividades' %}">
              <!--{% endif %}-->
