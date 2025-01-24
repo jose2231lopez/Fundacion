@@ -31,16 +31,13 @@ def Parametros1(request):
 
 from django.apps import apps
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from django.contrib.contenttypes.models import ContentType
-
 from django.db.models.fields.related import ForeignKey
 
 def buscar_en_todas_las_tablas(request):
     query = request.GET.get('q', '').strip().lower()
     resultados = []
+    total_tabla_actual = None  # Total para la tabla relacionada con la búsqueda
 
     if query:
         modelos_a_buscar = [
@@ -73,6 +70,10 @@ def buscar_en_todas_las_tablas(request):
                 # Filtrar los datos del modelo
                 queryset = modelo.objects.filter(filtros)
 
+                if queryset.exists():
+                    # Guardar el total de registros solo si la tabla tiene resultados
+                    total_tabla_actual = modelo.objects.count()
+
                 for obj in queryset:
                     datos_objeto = {
                         'campos': [],
@@ -97,7 +98,11 @@ def buscar_en_todas_las_tablas(request):
             except LookupError:
                 continue
 
-    return render(request, 'resultados_busqueda.html', {'resultados': resultados, 'query': query})
+    return render(request, 'resultados_busqueda.html', {
+        'resultados': resultados,
+        'query': query,
+        'total_tabla_actual': total_tabla_actual,  # Solo el total de la tabla con resultados
+    })
 
 
 #Vista de el atajo para la tabla Documentos 

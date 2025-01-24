@@ -1,22 +1,33 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex,nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados de Búsqueda</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png">
     <!-- CSS -->
     <link href="{% static 'css/css/styles1.css' %}" rel="stylesheet" />
 </head>
 <body>
-    <!-- Tabla Resultados de Busqueda  -->
+    <!-- Resultados de Búsqueda -->
     <div class="container my-5">
-        <h1 class="text-center">Resultados de Búsqueda para:"{{ query }}"</h1>
+        <h1 class="text-center">Resultados de Búsqueda para: "{{ query }}"</h1>
+        
+        {% if total_tabla_actual %}
+            <div class="my-4">
+                <h3>Total de registros en la tabla relacionada: {{ total_tabla_actual }}</h3>
+            </div>
+        {% endif %}
+
         {% if resultados %}
             <table class="table table-striped table-bordered mt-4">
                 <thead class="table-success">
                     <tr>
-                        <th ="col">ID</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Tabla</th>
                         <th scope="col">Campos</th>
                         <th scope="col">Valores</th>
