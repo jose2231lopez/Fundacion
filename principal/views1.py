@@ -38,6 +38,7 @@ def buscar_en_todas_las_tablas(request):
     resultados = []
     reporte_proyectos = None
     reporte_beneficiarios = None
+    reporte_actividades = None
 
     if query:
         modelos_a_buscar = [
@@ -88,11 +89,12 @@ def buscar_en_todas_las_tablas(request):
                         'datos': datos_objeto,
                     })
 
-                # Generar reporte solo si es relevante al modelo buscado
+                # Generar reportes específicos
                 if modelo_nombre == 'Proyectos' and queryset.exists():
                     proyectos = modelo.objects.annotate(num_beneficiarios=Count('beneficiariosproyectos__beneficiario'))
                     mas_relevante = proyectos.order_by('-num_beneficiarios').first()
                     reporte_proyectos = {
+                        'total': modelo.objects.count(),
                         'mas_relevante': mas_relevante.nombre_proyecto if mas_relevante else None,
                         'proyectos': [
                             {
@@ -110,6 +112,20 @@ def buscar_en_todas_las_tablas(request):
                         'masculino': masculino,
                         'femenino': femenino,
                     }
+                elif modelo_nombre == 'Actividades' and queryset.exists():
+                    actividades = modelo.objects.annotate(num_proyectos=Count('proyectosactividades__proyecto'))
+                    mas_relevante = actividades.order_by('-num_proyectos').first()
+                    reporte_actividades = {
+                        'total_actividades': modelo.objects.count(),
+                        'actividad_mas_relevante': mas_relevante.nombre_actividad if mas_relevante else None,
+                        'actividades': [
+                            {
+                                'nombre': actividad.nombre_actividad,
+                                'num_proyectos': actividad.num_proyectos,
+                            }
+                            for actividad in actividades
+                        ],
+                    }
             except LookupError:
                 continue
 
@@ -118,6 +134,7 @@ def buscar_en_todas_las_tablas(request):
         'query': query,
         'reporte_proyectos': reporte_proyectos,
         'reporte_beneficiarios': reporte_beneficiarios,
+        'reporte_actividades': reporte_actividades,
     })
 
 #Vista de el atajo para la tabla Documentos 
@@ -169,10 +186,10 @@ class ListadoBeneficiarios(SuccessMessageMixin, CreateView, ListView):
     model = Beneficiarios
     fields = "__all__"
     queryset = Beneficiarios.objects.all()
-    success_message = 'Beneficiario creado satisfactoriamente'
+    success_message = 'Actividad creada satisfactoriamente'
     
     def get_success_url(self):        
-        return reverse('principal1:leerBeneficiarios')
+        return reverse('principal1:leerActividades')
 
 class BeneficiariosDetalle(DetailView):
     model = Beneficiarios
@@ -180,7 +197,7 @@ class BeneficiariosDetalle(DetailView):
 class BeneficiariosActualizar(SuccessMessageMixin, UpdateView):
     model = Beneficiarios
     fields = "__all__"
-    success_message = 'Beneficiario actualizado satisfactoriamente'
+    success_message = 'Actividad actualizada satisfactoriamente'
     
     def get_success_url(self):               
         return reverse('principal1:leerBeneficiarios')
@@ -189,7 +206,7 @@ class BeneficiariosEliminar(SuccessMessageMixin, DeleteView):
     model = Beneficiarios
     
     def get_success_url(self): 
-        success_message = 'Beneficiario eliminado satisfactoriamente'
+        success_message = 'Beneficiario eliminada satisfactoriamente' 
         messages.success(self.request, success_message)       
         return reverse('principal1:leerBeneficiarios')
 #---------------------------Fin de Vistas para Beneficiarios-------------------------#  

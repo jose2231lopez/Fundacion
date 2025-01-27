@@ -10,10 +10,10 @@ urlpatterns = [
     path('Actividades/eliminar/<int:pk>', ActividadesEliminar.as_view(template_name='General/Actividades/eliminar.html')), 
     ##--------------------------------------------------------------Fin Crud Actividades---------------------------------------------------------------##
     ##--------------------------------------------------------------Crud Beneficiarios---------------------------------------------------------------##
-    path('Beneficiarios/', ListadoBeneficiarios.as_view(template_name = "General/Beneficiarios/tables.html"), name='leerBeneficiarios'), 
-    path('Beneficiarios/detalle/<int:pk>', BeneficiariosDetalle.as_view(template_name = "General/Beneficiarios/detalle.html"), name='detalleBeneficiarios'),
-    path('Beneficiarios/editar/<int:pk>',BeneficiariosActualizar.as_view(template_name = "General/Beneficiarios/actualizar.html"), name='actualizarBeneficiarios'), 
-    path('Beneficiarios/eliminar/<int:pk>', BeneficiariosEliminar.as_view(template_name ='General/Beneficiarios/eliminar.html')),
+    path('Beneficiarios/', ListadoBeneficiarios.as_view(template_name="General/Beneficiarios/tables.html"), name='leerBeneficiarios'), 
+    path('Beneficiarios/detalle/<int:pk>', BeneficiariosDetalle.as_view(template_name="General/Beneficiarios/detalle.html"), name='detalleBeneficiarios'),
+    path('Beneficiarios/editar/<int:pk>', BeneficiariosActualizar.as_view(template_name="General/Beneficiarios/actualizar.html"), name='actualizarBeneficiarios'), 
+    path('Beneficiarios/eliminar/<int:pk>', BeneficiariosEliminar.as_view(template_name='General/Beneficiarios/eliminar.html')), 
     ##--------------------------------------------------------------Crud Beneficiarios---------------------------------------------------------------##
     ##--------------------------------------------------------------Crud Documentos---------------------------------------------------------------##
     path('Documentos/', ListadoDocumentos.as_view(template_name="General/Documentos/tables.html"), name='leerDocumentos'), 
@@ -21,7 +21,7 @@ urlpatterns = [
     path('Documentos/editar/<int:pk>', DocumentosActualizar.as_view(template_name="General/Documentos/actualizar.html"), name='actualizarDocumentos'), 
     path('Documentos/eliminar/<int:pk>', DocumentosEliminar.as_view(template_name='General/Documentos/eliminar.html')), 
     ##--------------------------------------------------------------Fin Crud Documentos---------------------------------------------------------------##
-    path('BeneficiariosProyectos/', ListadoBeneficiariosProyectos.as_view(template_name="Listados/beneficiario_proyecto/tables.html"), name='leerBeneficiariosProyectos'),
-    path('BeneficiariosProyectos/editar/<int:pk>', BeneficiariosProyectosActualizar.as_view(template_name="Listados/beneficiario_proyecto/actualizar.html"), name='actualizarBeneficiariosProyectos'),
-    path('BeneficiariosProyectos/eliminar<int:pk>',BeneficiariosProyectosEliminar.as_view(template_name='Listados/beneficiario_proyecto/eliminar.html')),
+    path('BeneficiariosProyectos/', ListadoBeneficiariosProyectos.as_view(template_name="Listados/beneficiario_proyecto/tables.html"), name='leerBeneficiariosProyectos'), 
+    path('BeneficiariosProyectos/editar/<int:pk>', BeneficiariosProyectosActualizar.as_view(template_name="Listados/beneficiario_proyecto/actualizar.html"), name='actualizarProyectosActividades'), 
+    path('BeneficiariosProyectos/eliminar/<int:pk>', BeneficiariosProyectosEliminar.as_view(template_name='Listados/beneficiario_proyecto/eliminar.html')),
 ]

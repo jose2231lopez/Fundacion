@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Fundación Tierra de Paz</title>
+    <title>Fundacion Tierra de Paz</title>
     <!--  Favicon  -->
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/descarga.png">
     <!--  Stylesheets  -->
@@ -38,7 +38,7 @@
      data-header-position="absolute" 
      data-boxed-layout="full"
      >
-      <!--  Barra de Navegacion  -->
+      <!-- Menu De Navegacion -->
       <header class="topbar" data-navbarbg="skin5">
         {% include "nav.html" %}
       </header>
@@ -67,13 +67,13 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-0">Tabla Beneficiarios</h5>
+                  <h5 class="card-title mb-0">Actualizar</h5>
                 </div>
                 <div class="card">
                   <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                       {% csrf_token %}
-                      <!-- Tabla Beneficiarios -->
+                      <!-- Campos de la tabla beneficiarios -->
                       <div class="table-responsive">
                       <table id="table">
                         <thead>
@@ -82,6 +82,12 @@
                               <div class="col-lg-7">
                                 <label for="beneficiario_id">N°-Beneficiarios</label>
                                 {{ form.beneficiario_id|add_class:"form-control" }}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="col-lg-7">
+                                <label for="proyectos">Proyecto</label>
+                                {{ form.proyecto}}
                               </div>
                             </td>
                             <td>
@@ -110,8 +116,8 @@
                             </td>
                             <td>
                               <div class="col-lg-7">
-                                <label for="grupo_etnico">Grupo Etnico</label>
-                                {{ form.grupo_etnico }}
+                               <Label for="grupo_etnico">Grupo Etnico</Label>
+                               {{ form.grupo_etnico }}
                               </div>
                             </td>
                             <td>
@@ -124,13 +130,14 @@
                               <div class="col-lg-7">
                                 <label for="fecha_registro">Fecha Del Registro</label>
                                 {{ form.fecha_registro }}
+                              </div>  
                             </td>
                           </tr>
                         </thead>
                       </table>
                       <div class="col-lg-7 mt-3">
-                        <button type="submit" class="btn btn-success">Aceptar</button>
-                        <a href="{% url 'principal1:leerBeneficiarios' %}" class="btn btn-danger">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <a href="{% url 'principal1:leerBeneficiarios' %}" class="btn btn-primary">Cancelar</a>
                       </div>
                     </form>
                   </div>
