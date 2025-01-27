@@ -30,24 +30,25 @@ def Parametros1(request):
     return render(request, "GENERAL/index.html")
 
 from django.apps import apps
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import render
-from django.db.models.fields.related import ForeignKey
 
 def buscar_en_todas_las_tablas(request):
     query = request.GET.get('q', '').strip().lower()
     resultados = []
-    total_tabla_actual = None  # Total para la tabla relacionada con la búsqueda
+    reporte_proyectos = None
+    reporte_beneficiarios = None
 
     if query:
         modelos_a_buscar = [
             'Proyectos',
-            'Actividades',
             'Beneficiarios',
-            'Documentos',
-            'Seguimientos',
             'BeneficiariosProyectos',
-            'ProyectosActividades',
+            'Actividades',
+            'Seguimientos',
+            'Recursos',
+            'Proyectosactividades',
+            'Documentos',
         ]
 
         for modelo_nombre in modelos_a_buscar:
@@ -70,10 +71,6 @@ def buscar_en_todas_las_tablas(request):
                 # Filtrar los datos del modelo
                 queryset = modelo.objects.filter(filtros)
 
-                if queryset.exists():
-                    # Guardar el total de registros solo si la tabla tiene resultados
-                    total_tabla_actual = modelo.objects.count()
-
                 for obj in queryset:
                     datos_objeto = {
                         'campos': [],
@@ -81,12 +78,7 @@ def buscar_en_todas_las_tablas(request):
                     }
                     for field in fields:
                         field_name = field.verbose_name or field.name
-                        value = getattr(obj, field.name)
-
-                        # Manejar ForeignKeys
-                        if isinstance(field, ForeignKey) and value:
-                            value = str(value)
-
+                        value = getattr(obj, field.name, None)
                         datos_objeto['campos'].append(field_name)
                         datos_objeto['valores'].append(value)
 
@@ -95,15 +87,38 @@ def buscar_en_todas_las_tablas(request):
                         'id': obj.pk,
                         'datos': datos_objeto,
                     })
+
+                # Generar reporte solo si es relevante al modelo buscado
+                if modelo_nombre == 'Proyectos' and queryset.exists():
+                    proyectos = modelo.objects.annotate(num_beneficiarios=Count('beneficiariosproyectos__beneficiario'))
+                    mas_relevante = proyectos.order_by('-num_beneficiarios').first()
+                    reporte_proyectos = {
+                        'mas_relevante': mas_relevante.nombre_proyecto if mas_relevante else None,
+                        'proyectos': [
+                            {
+                                'nombre': proyecto.nombre_proyecto,
+                                'num_beneficiarios': proyecto.num_beneficiarios,
+                            }
+                            for proyecto in proyectos
+                        ],
+                    }
+                elif modelo_nombre == 'Beneficiarios' and queryset.exists():
+                    masculino = modelo.objects.filter(genero='Masculino').count()
+                    femenino = modelo.objects.filter(genero='Femenino').count()
+                    reporte_beneficiarios = {
+                        'total': modelo.objects.count(),
+                        'masculino': masculino,
+                        'femenino': femenino,
+                    }
             except LookupError:
                 continue
 
     return render(request, 'resultados_busqueda.html', {
         'resultados': resultados,
         'query': query,
-        'total_tabla_actual': total_tabla_actual,  # Solo el total de la tabla con resultados
+        'reporte_proyectos': reporte_proyectos,
+        'reporte_beneficiarios': reporte_beneficiarios,
     })
-
 
 #Vista de el atajo para la tabla Documentos 
 def crear_beneficiario(request):

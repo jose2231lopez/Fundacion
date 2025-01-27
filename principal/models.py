@@ -36,9 +36,9 @@ class Beneficiarios(models.Model):
     beneficiario_id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100, blank=True, null=True)
     apellido = models.CharField(max_length=100, blank=True, null=True)
-    genero = models.CharField(max_length=4, blank=True, null=True, choices=[
-        ('M','M'),
-        ('F','F'),
+    genero = models.CharField(max_length=9, blank=True, null=True, choices=[
+        ('Masculino','Masculino'),
+        ('Femenino','Femenino'),
         ('Otro','Otro'),
     ] )
 
