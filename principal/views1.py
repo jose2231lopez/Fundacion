@@ -92,7 +92,7 @@ def buscar_en_todas_las_tablas(request):
                     proyectos = modelo.objects.annotate(num_beneficiarios=Count('beneficiariosproyectos__beneficiario'))
                     mas_relevante = proyectos.order_by('-num_beneficiarios').first()
                     reporte_proyectos = {
-                        'total': modelo.objects.count(),
+                        'total': queryset.count(),
                         'mas_relevante': mas_relevante.nombre_proyecto if mas_relevante else None,
                         'proyectos': [
                             {
@@ -106,7 +106,7 @@ def buscar_en_todas_las_tablas(request):
                     masculino = modelo.objects.filter(genero='Masculino').count()
                     femenino = modelo.objects.filter(genero='Femenino').count()
                     reporte_beneficiarios = {
-                        'total': modelo.objects.count(),
+                        'total': queryset.count(),
                         'masculino': masculino,
                         'femenino': femenino,
                     }
@@ -114,7 +114,7 @@ def buscar_en_todas_las_tablas(request):
                     actividades = modelo.objects.annotate(num_proyectos=Count('proyectosactividades__proyecto'))
                     mas_relevante = actividades.order_by('-num_proyectos').first()
                     reporte_actividades = {
-                        'total_actividades': modelo.objects.count(),
+                        'total_actividades': queryset.count(),
                         'actividad_mas_relevante': mas_relevante.nombre_actividad if mas_relevante else None,
                         'actividades': [
                             {
