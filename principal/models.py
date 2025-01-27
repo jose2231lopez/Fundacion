@@ -34,7 +34,6 @@ class Proyectos(models.Model):
 
 class Beneficiarios(models.Model):
     beneficiario_id = models.AutoField(primary_key=True)
-    proyecto = models.ForeignKey('Proyectos', on_delete=models.CASCADE, db_column='proyecto_id')
     nombre = models.CharField(max_length=100, blank=True, null=True)
     apellido = models.CharField(max_length=100, blank=True, null=True)
     genero = models.CharField(max_length=9, blank=True, null=True, choices=[

@@ -44,11 +44,9 @@ def buscar_en_todas_las_tablas(request):
         modelos_a_buscar = [
             'Proyectos',
             'Beneficiarios',
-            'BeneficiariosProyectos',
             'Actividades',
             'Seguimientos',
             'Recursos',
-            'Proyectosactividades',
             'Documentos',
         ]
 
