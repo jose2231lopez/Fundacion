@@ -21,7 +21,9 @@
             <table class="table table-striped table-bordered mt-4">
                 <thead class="table-success">
                     <tr>
-                        <th class="position-absolute" class"text-center">Resultados</th>
+                        {% for campo in resultado.datos.campos %}
+                            <th>{{ campos }}</th>
+                        {% endfor %}
                     </tr>
                 </thead>
                 <tbody>

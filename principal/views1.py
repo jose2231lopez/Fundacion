@@ -76,10 +76,12 @@ def buscar_en_todas_las_tablas(request):
                         'valores': [],
                     }
                     for field in fields:
-                        field_name = field.verbose_name or field.name
-                        value = getattr(obj, field.name, None)
-                        datos_objeto['campos'].append(field_name)
-                        datos_objeto['valores'].append(value)
+                        # Excluir campos de tipo fecha e ID
+                        if field.get_internal_type() not in ['AutoField', 'DateField', 'DateTimeField']:
+                            field_name = field.verbose_name or field.name
+                            value = getattr(obj, field.name, None)
+                            datos_objeto['campos'].append(field_name)
+                            datos_objeto['valores'].append(value)
 
                     resultados.append({
                         'tabla': modelo._meta.verbose_name,
@@ -87,22 +89,32 @@ def buscar_en_todas_las_tablas(request):
                         'datos': datos_objeto,
                     })
 
-                # Generar reportes específicos
+                # Procesar los Proyectos
                 if modelo_nombre == 'Proyectos' and queryset.exists():
-                    proyectos = modelo.objects.annotate(num_beneficiarios=Count('beneficiariosproyectos__beneficiario'))
-                    mas_relevante = proyectos.order_by('-num_beneficiarios').first()
+                    proyectos_agrupados = modelo.objects.values('nombre_proyecto') \
+                        .annotate(conteo=Count('proyecto_id')) \
+                        .filter(conteo__gt=1) \
+                        .order_by('-conteo')
+
+                    mas_relevante = proyectos_agrupados.first()
+
                     reporte_proyectos = {
-                        'total': queryset.count(),
-                        'mas_relevante': mas_relevante.nombre_proyecto if mas_relevante else None,
-                        'proyectos': [
+                        'total': proyectos_agrupados.count(),
+                        'mas_relevante': {
+                            'nombre': mas_relevante['nombre_proyecto'],
+                            'repeticiones': mas_relevante['conteo'],
+                        } if mas_relevante else None,
+                        'proyectos_duplicados': [
                             {
-                                'nombre': proyecto.nombre_proyecto,
-                                'num_beneficiarios': proyecto.num_beneficiarios,
+                                'nombre': proyecto['nombre_proyecto'],
+                                'repeticiones': proyecto['conteo'],
                             }
-                            for proyecto in proyectos
+                            for proyecto in proyectos_agrupados
                         ],
                     }
-                elif modelo_nombre == 'Beneficiarios' and queryset.exists():
+
+                # Procesar los Beneficiarios
+                if modelo_nombre == 'Beneficiarios' and queryset.exists():
                     masculino = modelo.objects.filter(genero='Masculino').count()
                     femenino = modelo.objects.filter(genero='Femenino').count()
                     reporte_beneficiarios = {
@@ -110,20 +122,31 @@ def buscar_en_todas_las_tablas(request):
                         'masculino': masculino,
                         'femenino': femenino,
                     }
-                elif modelo_nombre == 'Actividades' and queryset.exists():
-                    actividades = modelo.objects.annotate(num_proyectos=Count('proyectosactividades__proyecto'))
-                    mas_relevante = actividades.order_by('-num_proyectos').first()
+
+                # Procesar las Actividades
+                if modelo_nombre == 'Actividades' and queryset.exists():
+                    actividades_agrupadas = modelo.objects.values('nombre_actividad') \
+                    .annotate(conteo=Count('actividad_id')) \
+                    .filter(conteo__gt=1) \
+                    .order_by('-conteo')
+
+                    mas_relevante = actividades_agrupadas.first()
+     
                     reporte_actividades = {
-                        'total_actividades': queryset.count(),
-                        'actividad_mas_relevante': mas_relevante.nombre_actividad if mas_relevante else None,
+                        'total_actividades': actividades_agrupadas.count(),
+                        'actividad_mas_relevante':{ 
+                           'nombre':mas_relevante['nombre_actividad'], 
+                           'repeticiones':mas_relevante['conteo']
+                            } if mas_relevante else None,
                         'actividades': [
                             {
-                                'nombre': actividad.nombre_actividad,
-                                'num_proyectos': actividad.num_proyectos,
+                                'nombre': actividad['nombre_actividad'],
+                                'num_proyectos': actividad['num_proyectos'],
                             }
-                            for actividad in actividades
+                            for actividad in actividades_agrupadas
                         ],
                     }
+
             except LookupError:
                 continue
 
@@ -134,6 +157,7 @@ def buscar_en_todas_las_tablas(request):
         'reporte_beneficiarios': reporte_beneficiarios,
         'reporte_actividades': reporte_actividades,
     })
+
 
 #Vista de el atajo para la tabla Documentos 
 def crear_beneficiario(request):
