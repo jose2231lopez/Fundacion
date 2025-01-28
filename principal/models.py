@@ -12,6 +12,8 @@ from django.contrib.auth.hashers import make_password
 def some_function():
     from .models import Beneficiarios, Proyectos,Documentos
 
+from django.core.exceptions import ValidationError
+
 class Proyectos(models.Model):
     proyecto_id = models.AutoField(primary_key=True)
     nombre_proyecto = models.CharField(max_length=100, blank=True, null=True)
@@ -26,9 +28,15 @@ class Proyectos(models.Model):
         ('Pendiente', 'Pendiente'),
         ('Cancelado', 'Cancelado'),
     ])
+
+    def clean(self):
+        # Validar que la actividad no esté ya asociada a otro proyecto
+        if self.actividad and Proyectos.objects.filter(actividad=self.actividad).exclude(proyecto_id=self.proyecto_id).exists():
+            raise ValidationError(f"La actividad '{self.actividad}' ya está asignada a otro proyecto.")
+
     def __str__(self):
         return self.nombre_proyecto
-    
+
     class Meta:
         db_table = 'proyectos'
 

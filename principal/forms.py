@@ -81,3 +81,31 @@ class RegionForm(forms.ModelForm):
     class Meta:
         model = Regiones
         fields = ['region_id','departamento','municipio','vereda']
+
+from django import forms
+from .models import Proyectos, Actividades
+
+class ProyectosForm(forms.ModelForm):
+    class Meta:
+        model = Proyectos
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Excluir actividades ya asociadas a un proyecto
+        self.fields['actividad'].queryset = Actividades.objects.exclude(proyectos__isnull=False)
+
+from django import forms
+from .models import Documentos, Beneficiarios
+
+class DocumentosForm(forms.ModelForm):
+    class Meta:
+        model = Documentos
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Excluir beneficiarios ya asociados a un documento de identidad
+        self.fields['beneficiario'].queryset = Beneficiarios.objects.exclude(documentos__isnull=False)
+
+

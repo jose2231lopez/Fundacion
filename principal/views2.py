@@ -100,12 +100,14 @@ class NotificacionesEliminar(SuccessMessageMixin, DeleteView):
 #---------------------------Fin de Vistas para Notificaciones-----------------------#
 
 #---------------------------Vistas Para Proyectos-----------------------------------#
+from .forms import ProyectosForm
+
 class ListadoProyectos(SuccessMessageMixin, CreateView, ListView):
     model = Proyectos
-    fields = "__all__"
+    form_class = ProyectosForm  # Usar el formulario personalizado
     queryset = Proyectos.objects.all()
     success_message = 'Proyecto creado satisfactoriamente'
-    
+
     def get_success_url(self):        
         return reverse('principal2:leerProyectos')
 
@@ -114,9 +116,9 @@ class ProyectosDetalle(DetailView):
 
 class ProyectosActualizar(SuccessMessageMixin, UpdateView):
     model = Proyectos
-    fields = "__all__"
+    form_class = ProyectosForm  # Usar el formulario personalizado
     success_message = 'Proyecto actualizado satisfactoriamente'
-    
+
     def get_success_url(self):               
         return reverse('principal2:leerProyectos')
 

@@ -114,9 +114,11 @@ class SeguimientosEliminar(SuccessMessageMixin, DeleteView):
 #---------------------------Fin de Vistas para Seguimientos---------------------#
 
 #---------------------------Vistas para Proyectos_Actividades-----------------------------------#
+from .forms import ProyectosForm
+
 class ListadoProyectosActividades(SuccessMessageMixin, CreateView, ListView):
     model = ProyectosActividades
-    fields = "__all__"
+    form_class = ProyectosForm  # Usar el formulario personalizado
     queryset = ProyectosActividades.objects.all()
     success_message = 'Listado creado satisfactoriamente'
     
@@ -125,7 +127,7 @@ class ListadoProyectosActividades(SuccessMessageMixin, CreateView, ListView):
 
 class ProyectosActividadesActualizar(SuccessMessageMixin, UpdateView):
     model = ProyectosActividades
-    fields = "__all__"
+    form_class = ProyectosForm  # Usar el formulario personalizado
     success_message = 'Listado actualizado satisfactoriamente'
     
     def get_success_url(self):               

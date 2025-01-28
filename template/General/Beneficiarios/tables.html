@@ -79,10 +79,6 @@
                         {{ form.beneficiario_id|add_class:"form-control" }}
                       </div>
                       <div class="col-lg-7 mb-3">
-                        <label for="proyecto">Proyecto</label>
-                        {{ form.proyecto|add_class:"form-control" }}
-                      </div>
-                      <div class="col-lg-7 mb-3">
                         <label for="nombre">Nombres</label>
                         {{ form.nombre|add_class:"form-control" }}
                       </div>
@@ -134,7 +130,6 @@
                       <thead>
                         <tr>
                           <th>N°-Beneficiarios</th>
-                          <th>Proyecto</th>
                           <th>Nombres</th>
                           <th>Apellidos</th>
                           <th>Genero</th>
@@ -148,7 +143,6 @@
                         {% for beneficiarios in object_list %}
                           <tr>
                             <td>{{ beneficiarios.beneficiario_id }}</td>
-                            <td>{{ beneficiarios.proyecto }}</td>
                             <td>{{ beneficiarios.nombre }}</td>
                             <td>{{ beneficiarios.apellido }}</td>
                             <td>{{ beneficiarios.genero }}</td>

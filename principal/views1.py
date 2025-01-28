@@ -89,7 +89,7 @@ def buscar_en_todas_las_tablas(request):
                         'datos': datos_objeto,
                     })
 
-                # Procesar los Proyectos
+                 # Procesar los Proyectos
                 if modelo_nombre == 'Proyectos' and queryset.exists():
                     proyectos_agrupados = modelo.objects.values('nombre_proyecto') \
                         .annotate(conteo=Count('proyecto_id')) \
@@ -118,7 +118,7 @@ def buscar_en_todas_las_tablas(request):
                     masculino = modelo.objects.filter(genero='Masculino').count()
                     femenino = modelo.objects.filter(genero='Femenino').count()
                     reporte_beneficiarios = {
-                        'total': queryset.count(),
+                        'total': modelo.objects.count(),
                         'masculino': masculino,
                         'femenino': femenino,
                     }
@@ -126,22 +126,21 @@ def buscar_en_todas_las_tablas(request):
                 # Procesar las Actividades
                 if modelo_nombre == 'Actividades' and queryset.exists():
                     actividades_agrupadas = modelo.objects.values('nombre_actividad') \
-                    .annotate(conteo=Count('actividad_id')) \
-                    .filter(conteo__gt=1) \
-                    .order_by('-conteo')
+                        .annotate(conteo=Count('actividad_id')) \
+                        .order_by('-conteo')
 
                     mas_relevante = actividades_agrupadas.first()
-     
+
                     reporte_actividades = {
                         'total_actividades': actividades_agrupadas.count(),
-                        'actividad_mas_relevante':{ 
-                           'nombre':mas_relevante['nombre_actividad'], 
-                           'repeticiones':mas_relevante['conteo']
-                            } if mas_relevante else None,
+                        'actividad_mas_relevante': {
+                            'nombre': mas_relevante['nombre_actividad'],
+                            'repeticiones': mas_relevante['conteo']
+                        } if mas_relevante else None,
                         'actividades': [
                             {
                                 'nombre': actividad['nombre_actividad'],
-                                'num_proyectos': actividad['num_proyectos'],
+                                'repeticiones': actividad['conteo'],
                             }
                             for actividad in actividades_agrupadas
                         ],
@@ -158,7 +157,7 @@ def buscar_en_todas_las_tablas(request):
         'reporte_actividades': reporte_actividades,
     })
 
-
+#--------------------------Proyectos Ventana flotante----------------------------------#
 #Vista de el atajo para la tabla Documentos 
 def crear_beneficiario(request):
     if request.method == 'POST':
@@ -211,7 +210,7 @@ class ListadoBeneficiarios(SuccessMessageMixin, CreateView, ListView):
     success_message = 'Actividad creada satisfactoriamente'
     
     def get_success_url(self):        
-        return reverse('principal1:leerActividades')
+        return reverse('principal1:leerBeneficiarios')
 
 class BeneficiariosDetalle(DetailView):
     model = Beneficiarios
@@ -234,9 +233,11 @@ class BeneficiariosEliminar(SuccessMessageMixin, DeleteView):
 #---------------------------Fin de Vistas para Beneficiarios-------------------------#  
   
 #---------------------------Vistas para Documentos-----------------------------------#
+from .forms import DocumentosForm
+
 class ListadoDocumentos(SuccessMessageMixin, CreateView, ListView):
     model = Documentos
-    fields = "__all__"
+    form_class = DocumentosForm  # Usar el formulario personalizado
     queryset = Documentos.objects.all()
     success_message = 'Documento creado correctamente'
     
@@ -248,7 +249,7 @@ class DocumentosDetalle(DetailView):
 
 class DocumentosActualizar(SuccessMessageMixin, UpdateView):
     model = Documentos
-    fields = "__all__"
+    form_class = DocumentosForm  # Usar el formulario personalizado
     success_message = 'Documento actualizado correctamente'
     
     def get_success_url(self):               
