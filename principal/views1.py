@@ -89,29 +89,27 @@ def buscar_en_todas_las_tablas(request):
                         'datos': datos_objeto,
                     })
 
-                 # Procesar los Proyectos
-                if modelo_nombre == 'Proyectos' and queryset.exists():
-                    proyectos_agrupados = modelo.objects.values('nombre_proyecto') \
-                        .annotate(conteo=Count('proyecto_id')) \
-                        .filter(conteo__gt=1) \
-                        .order_by('-conteo')
+                    # Procesar los Proyectos
+                    if modelo_nombre == 'Proyectos' and queryset.exists():
+                        proyectos_agrupados = modelo.objects.values('nombre_proyecto') \
+                            .annotate(num_beneficiarios=Count('nombre_proyecto')) \
+                            .order_by('-num_beneficiarios')
 
-                    mas_relevante = proyectos_agrupados.first()
+                        mas_relevante = proyectos_agrupados.first()
 
-                    reporte_proyectos = {
-                        'total': proyectos_agrupados.count(),
-                        'mas_relevante': {
-                            'nombre': mas_relevante['nombre_proyecto'],
-                            'repeticiones': mas_relevante['conteo'],
-                        } if mas_relevante else None,
-                        'proyectos_duplicados': [
-                            {
-                                'nombre': proyecto['nombre_proyecto'],
-                                'repeticiones': proyecto['conteo'],
-                            }
-                            for proyecto in proyectos_agrupados
-                        ],
-                    }
+                        reporte_proyectos = {
+                            'total': proyectos_agrupados.count(),  # Número total de proyectos únicos
+                            'mas_relevante': {
+                                'nombre': mas_relevante['nombre_proyecto'],
+                            } if mas_relevante else None,
+                            'proyectos': [
+                                {
+                                    'nombre': proyecto['nombre_proyecto'],
+                                    'num_beneficiarios': proyecto['num_beneficiarios'],
+                                }
+                                for proyecto in proyectos_agrupados
+                            ],
+                        }
 
                 # Procesar los Beneficiarios
                 if modelo_nombre == 'Beneficiarios' and queryset.exists():

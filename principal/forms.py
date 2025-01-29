@@ -83,7 +83,7 @@ class RegionForm(forms.ModelForm):
         fields = ['region_id','departamento','municipio','vereda']
 
 from django import forms
-from .models import Proyectos, Actividades
+from .models import Proyectos, Actividades, Beneficiarios
 
 class ProyectosForm(forms.ModelForm):
     class Meta:
@@ -94,6 +94,7 @@ class ProyectosForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Excluir actividades ya asociadas a un proyecto
         self.fields['actividad'].queryset = Actividades.objects.exclude(proyectos__isnull=False)
+        self.fields['beneficiario'].queryset = Beneficiarios.objects.exclude(proyectos__isnull=False)
 
 from django import forms
 from .models import Documentos, Beneficiarios

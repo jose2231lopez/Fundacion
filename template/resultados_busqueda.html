@@ -48,7 +48,7 @@
             <div class="my-5">
                 <h2>Reporte de Proyectos</h2>
                 <p><strong>Total de proyectos:</strong> {{ reporte_proyectos.total }}</p>
-                <p><strong>Proyecto más relevante:</strong> {{ reporte_proyectos.mas_relevante }}</p>
+                <p><strong>Proyecto más relevante:</strong> {{ reporte_proyectos.mas_relevante.nombre }}</p>
                 <h3>Proyectos y número de beneficiarios:</h3>
                 <ul>
                     {% for proyecto in reporte_proyectos.proyectos %}
