@@ -34,7 +34,7 @@ from django.db.models import Q, Count
 from django.shortcuts import render
 
 def buscar_en_todas_las_tablas(request):
-    query = request.GET.get('q', '').strip().lower()
+    query = request.GET.get('q', '').strip().upper()
     resultados = []
     reporte_proyectos = None
     reporte_beneficiarios = None
@@ -133,7 +133,6 @@ def buscar_en_todas_las_tablas(request):
                         'total_actividades': actividades_agrupadas.count(),
                         'actividad_mas_relevante': {
                             'nombre': mas_relevante['nombre_actividad'],
-                            'repeticiones': mas_relevante['conteo']
                         } if mas_relevante else None,
                         'actividades': [
                             {
